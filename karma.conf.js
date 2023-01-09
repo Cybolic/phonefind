@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/angular-quickstart'),
+      dir: require('path').join(__dirname, './coverage/phonefind'),
       subdir: '.',
       reporters: [
         { type: 'html' },

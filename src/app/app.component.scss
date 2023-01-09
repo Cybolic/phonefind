@@ -1,0 +1,57 @@
+@use "../styles";
+
+:host {
+  display: flex;
+  height: 100%;
+}
+
+#content {
+  justify-content: space-evenly;
+}
+
+.header{
+  text-align: center;
+
+  h1 {
+    padding-top:5%;
+    margin: 0;
+    font-size: calc(max(5vw, 32px));
+    font-family: Madras;
+    color: var(--color-accent);
+  }
+
+  h2 {
+    line-height: 34px;
+    width: 24em;
+    margin: 0 auto;
+    font-weight: 500;
+
+    @media only screen and (max-width: styles.$bp-small) {
+      width: 90%;
+      padding: 5%;
+    }
+  }
+  h3 {
+    font-weight: 500;
+    padding-bottom: 5%;
+  }
+}
+
+.resource-list {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: larger;
+  padding: 10px;
+  text-align: center;
+}
+
+.resource-list ul {
+    text-align: left;
+    margin: 0 auto;
+    width: 300px;
+}
+
+.resource-list a {
+  color: black;
+  line-height: 30px;
+}
+
