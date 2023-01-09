@@ -99,6 +99,15 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
@@ -108,5 +117,8 @@
       "style": "scss"
     }
   },
-  "defaultProject": "phonefind"
+  "defaultProject": "phonefind",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

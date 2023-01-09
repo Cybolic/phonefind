@@ -1,13 +1,17 @@
-<h3>Link your name and email to your phone-number so whoever finds it can contact you.</h3>
+<h3>
+  Link your name and email to your phone-number so whoever finds it can contact
+  you.
+</h3>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-
   <div>
-    <label for="phone">
-      Phone number
-    </label>
-    <input id="phone" type="tel" formControlName="phone" placeholder="+00 000...">
+    <label for="phone"> Phone number </label>
+    <input
+      id="phone"
+      type="tel"
+      formControlName="phone"
+      placeholder="+00 000..."
+    />
   </div>
 
   <button class="button" type="submit">Register</button>
-
 </form>
