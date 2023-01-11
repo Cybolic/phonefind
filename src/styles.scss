@@ -1,3 +1,5 @@
+@use "sass:color";
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 @font-face {
   font-family: Madras;
@@ -5,19 +7,39 @@
 }
 
 $bp-small: 450px;
+$border-radius: .5em;
+
 $color-bg: #0083B0;
 $color-bg-light: #00B4DB;
 $color-accent: #92eaff;
+$color-fg: white;
+$color-fg-error: hsl(0deg, 100%, 80%);
+
+$color-input-bg: white;
+$color-input-fg-dim: hsl(0deg, 0%, 70%);
+
+$color-border-light: color.mix($color-accent, $color-bg, 50%);
+$color-border: color.scale($color-bg, $lightness: 30%, $saturation: 100%);
+$color-button: color.scale($color-accent, $lightness: -40%, $saturation: 100%);
+$color-button-hover: color.scale($color-accent, $lightness: -20%);
+$color-button-disabled: color.scale($color-accent, $lightness: -40%, $saturation: 50%);
+$color-button-accent: color.adjust($color-button, $hue: -20deg, $lightness: -10%);
+$color-button-accent-hover: color.adjust($color-button-hover, $hue: -20deg, $lightness: -10%);
+$color-button-accent-disabled: color.adjust($color-button-disabled, $hue: -20deg, $lightness: -5%, $saturation: -40%);
 
 :root {
   --main-family: 'Poppins', sans-serif;
   --color-bg: linear-gradient(180deg, #{$color-bg-light}, #{$color-bg});
-  --color-fg: white;
+  --color-fg: #{$color-fg};;
   --color-accent: #{$color-accent};
 
   /* Controls the blob blur gradient colors within the main tag's svg */
   --top-right-blur-1: #20C6B7;
   --top-right-blur-2: #4D9ABF;
+}
+
+router-outlet {
+  display: none;
 }
 
 html {
@@ -57,3 +79,88 @@ body {
 
 }
 
+h3 {
+  font-weight: normal;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  padding: 1em;
+  margin-bottom: 10%;
+  border: 2px solid $color-border-light;
+  border-radius: $border-radius;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5em;
+  }
+
+  input {
+    border: 2px solid $color-border;
+    border-radius: $border-radius;
+    background-color: $color-input-bg;
+    color: hsl(0deg, 0%, 0%);
+    padding: .25em .5em;
+    font-size: 120%;
+    width: 100%;
+    box-sizing: border-box;
+
+    &::placeholder {
+      color: $color-input-fg-dim;
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: .75em;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 2px solid white;
+    border-radius: $border-radius;
+    color: var(--color-fg);
+
+    $buttons: (
+      "&": (
+        normal: $color-button,
+        hover: $color-button-hover,
+        disabled: $color-button-disabled,
+      ),
+      "&.last-step": (
+        normal: $color-button-accent,
+        hover: $color-button-accent-hover,
+        disabled: $color-button-accent-disabled,
+      )
+    );
+
+    @each $selector, $colors in $buttons {
+      #{$selector} {
+        background-color: map-get($colors, normal);
+      }
+      #{$selector}:hover {
+        background-color: map-get($colors, hover);
+      }
+      .ng-invalid #{$selector},
+      #{$selector}[disabled] {
+        background-color: map-get($colors, disabled);
+      }
+    }
+
+
+  }
+
+  .error {
+    color: $color-fg-error;
+  }
+}
+
+sa-spinner-dotted {
+  position: fixed;
+  top: calc(24% + 4em);
+  left: 50%;
+  margin-left: -32px;
+}
