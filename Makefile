@@ -9,5 +9,5 @@ angular-environment:
 + @echo "export const environment = { production: false, firebase: $${firebase} }" > $(ANGULAR_ENV)
 
 build: angular-environment
-+ ng build --prod
++ ng build
 

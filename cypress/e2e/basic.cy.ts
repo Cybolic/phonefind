@@ -4,14 +4,13 @@ describe('empty spec', () => {
   })
 
   it('displays the resources text', () => {
-    cy.get('h2')
-    .contains('This is a bare-bones Angular project that has everything you need to quickly deploy it to Netlify');
+    cy.get('h2').contains('Found a phone? Find the owner.')
   })
-  it('renders the image', () => {
-    cy.get('img')
-    .should('be.visible')
-    .and(($img) => {
-      expect($img[0].naturalWidth).to.be.greaterThan(0);
-    })
+  it('renders the background', () => {
+    cy.get('svg')
+      .should('be.visible')
+      .and(($svg) => {
+        expect($svg[0].naturalWidth).to.be.greaterThan(0)
+      })
   })
 })
