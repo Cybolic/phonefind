@@ -1,0 +1,10 @@
+@use "../../styles";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+a {
+  color: styles.$color-fg;
+}

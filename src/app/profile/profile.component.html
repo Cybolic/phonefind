@@ -1,0 +1,13 @@
+<form [formGroup]="profileForm" (ngSubmit)="save()">
+  <label for="name">Name:</label>
+  <input id="name" type="text" formControlName="name" placeholder="Your name..." />
+  <label for="email">Email:</label>
+  <input id="email" type="email" formControlName="email" placeholder="Your email address..." />
+
+  <button class="button" [disabled]="!profileForm.valid" type="submit">Save</button>
+</form>
+
+<sa-spinner-dotted *ngIf="loading" [size]="64" [thickness]="150" [speed]="100"
+  color="hsl(192deg 100% 80%)"></sa-spinner-dotted>
+
+<a routerLink="/logout">Log out</a>

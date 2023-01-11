@@ -2,16 +2,27 @@
   Link your name and email to your phone-number so whoever finds it can contact
   you.
 </h3>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="phone"> Phone number </label>
-    <input
-      id="phone"
-      type="tel"
-      formControlName="phone"
-      placeholder="+00 000..."
-    />
-  </div>
+<form [formGroup]="loginForm" (ngSubmit)="login()">
 
-  <button class="button" type="submit">Register</button>
+  <ng-container *ngIf="!isAtLastStep">
+    <label for="phone">Phone number:</label>
+    <input id="phone" type="tel" formControlName="phone" placeholder="+00 000..." />
+  </ng-container>
+
+  <ng-container *ngIf="isAtLastStep">
+    <label for="confirmation">Verification code:</label>
+    <input id="confirmation" type="text" formControlName="confirmation" placeholder="00000" />
+  </ng-container>
+
+  <div class="error" *ngIf="error as message">{{ message }}</div>
+  <div id="{{recaptchaId}}"></div>
+
+  <button class="button" [class.last-step]="isAtLastStep" [disabled]="!loginForm.valid" type="submit">{{!isAtLastStep
+    ? 'Link phone number'
+    : 'Validate'
+    }}</button>
+
 </form>
+
+<sa-spinner-dotted *ngIf="loading" [size]="64" [thickness]="150" [speed]="100"
+  color="hsl(192deg 100% 80%)"></sa-spinner-dotted>
