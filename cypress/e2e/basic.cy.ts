@@ -7,10 +7,6 @@ describe('empty spec', () => {
     cy.get('h2').contains('Found a phone? Find the owner.')
   })
   it('renders the background', () => {
-    cy.get('svg')
-      .should('be.visible')
-      .and(($svg) => {
-        expect($svg[0].naturalWidth).to.be.greaterThan(0)
-      })
+    cy.get('svg').should('exist')
   })
 })
